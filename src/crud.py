@@ -1,6 +1,7 @@
 import streamlit as st
 from queries_mongodb import get_films, insert_film, update_film, delete_film
 
+# Formulaire pour inserer un film
 def insert_film_form():
     with st.form(key="insert_form"):
             title = st.text_input("Titre")
@@ -36,13 +37,14 @@ def insert_film_form():
                 else:
                     st.error(f"Erreur lors de l'ajout du film '{title}'.")
 
-
+# Formulaire pour mettre a jour un film
 def update_film_form(film_id_to_update, new_title):
     if update_film(film_id_to_update, {"title": new_title}):
         st.success(f"Film avec ID {film_id_to_update} mis à jour.")
     else:
         st.error(f"Erreur lors de la mise à jour du film avec ID {film_id_to_update}.")
 
+# Formulaire pour supprimer un film
 def delete_film_form(film_id_to_delete):
     if delete_film(film_id_to_delete):
         st.success(f"Film avec ID {film_id_to_delete} supprimé.")

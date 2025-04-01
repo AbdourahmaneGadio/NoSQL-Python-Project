@@ -1,10 +1,9 @@
-# src/database.py
-
 import pymongo
 from neo4j import GraphDatabase
 from config import get_mongo_secrets, get_neo4j_secrets
 import streamlit as st
 
+# Se connecte a la base MongoDB
 @st.cache_resource
 def init_mongo_connection():
     try:
@@ -14,6 +13,7 @@ def init_mongo_connection():
         st.error(f"Erreur de connexion à MongoDB : {e}")
         return None
 
+# Se connecte a la base Neo4J
 @st.cache_resource
 def init_neo4j_connection():
     try:
